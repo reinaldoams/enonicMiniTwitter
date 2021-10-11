@@ -1,0 +1,58 @@
+<div class="form">
+    <h1>Update Post</h1>
+    <form method="post" th:action="${serviceUrl}">
+        <input type="hidden" name="postsFolderPath" th:value="${config.postsFolderPath}">
+        <input type="hidden" name="requestType" th:value="put">
+        <input type="hidden" name="postId" th:value="${currentPost.hits[0]._id}">
+
+        <p th:text="${currentPost}"></p>
+        <p th:text="${currentPost.hits[0].data.category}"></p>
+
+        <label>Title</label>
+        <input type="text" name="title" class="form-control" th:value="${currentPost.hits[0].data.title}" required>
+
+        <p th:text $="{currentPost}"></p>
+
+        <label>Short title</label>
+        <input type="text" name="shorttitle" class="form-control" th:value="${currentPost.hits[0].data.shorttitle}" required>
+
+        <label>Html</label>
+        <textarea name="html" class="form-control">
+            [[ ${currentPost.hits[0].data.html} ]]
+        </textarea>
+
+        <label>Autor</label>
+        <select name="author" class="form-control" th:value="${currentPost.hits[0].data.author}">
+            <option th:each="author : ${data.authors}"
+                    th:value="${author.id}"
+                    th:if="${author.id == currentPost.hits[0].data.author}"
+                    selected>
+                [[ ${author.name} ]]
+            </option>
+            <option th:each="author : ${data.authors}"
+                    th:value="${author.id}"
+                    th:unless="${author.id == currentPost.hits[0].data.author}">
+                [[ ${author.name} ]]
+            </option>
+        </select>
+
+        <label>Categoria</label>
+        <select name="category" class="form-control" multiple>
+            <option th:each="category : ${data.categories}"
+                    th:value="${category.id}"
+                    th:if="${category.id == currentPost.hits[0].data.category}"
+                    selected>
+                [[ ${category.title} ]]
+                [[ ${category.id} ]]
+            </option>
+            <option th:each="category : ${data.categories}"
+                    th:value="${category.id}"
+                    th:unless="${category.id == currentPost.hits[0].data.category}">
+                [[ ${category.title} ]]
+                [[ ${category.id} ]]
+            </option>
+        </select>
+
+        <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+    </form>
+</div>

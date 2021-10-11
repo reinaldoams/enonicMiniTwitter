@@ -1,0 +1,16 @@
+<div>
+    <h1>This is the homepage!</h1>
+    <ul>
+        <div th:if='${pages}'>
+            <ul>
+                <li th:each='page : ${pages}' th:unless='${pageStat.count > 3}'>
+                    <a th:href='${url + "/" + page._name}'
+                    th:text='${page.displayName}'>hi</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <ul><li><a th:href="${config.pageCreate}"><strong>Create a post!</strong></a></li></ul>
+        </div>
+    </ul>
+</div>
