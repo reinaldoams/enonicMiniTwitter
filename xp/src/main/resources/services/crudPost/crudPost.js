@@ -22,13 +22,11 @@ exports.post = req => {
     let siteUrl = portal.url(portal.getSite()._id);
     const data = req.params;
     if (data.requestType === 'delete') {
-        log.info('deletando')
         content.delete({
             key: data.postId
         });
         
     } else if (data.requestType === 'put') {
-        log.info('modificando')
         function editor(c) {
             c.displayName = data.title;
             c.data.title = data.title;
