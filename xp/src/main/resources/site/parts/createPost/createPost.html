@@ -11,20 +11,20 @@
         <input type="text" name="shorttitle" class="form-control" required>
 
         <label>Html</label>
-        <textarea name="html" class="form-control"></textarea>
+        <div class="form-group">
+            <textarea id="editor" name="html" class="form-control"></textarea>
+        </div>
 
         <label>Autor</label>
         <select name="author" class="form-control">
-            <option th:each="author : ${data.authors}"
-                    th:value="${author.id}">
+            <option th:each="author : ${data.authors}" th:value="${author.id}">
                 [[ ${author.name} ]]
             </option>
         </select>
 
         <label>Categoria</label>
         <select name="category" class="form-control" multiple>
-            <option th:each="category : ${data.categories}"
-                    th:value="${category.id}">
+            <option th:each="category : ${data.categories}" th:value="${category.id}">
                 [[ ${category.title} ]]
             </option>
         </select>
