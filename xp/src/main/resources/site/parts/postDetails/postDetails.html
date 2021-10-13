@@ -1,7 +1,7 @@
-<div class="details" th:if="${show}">
+<div class="w-50 my-3 mx-auto" th:if="${show}">
+    <h1 class="bg-light text-center">[[ ${post.title} ]]</h1>
     <p><img th:if="${post.image}" th:src="${post.image}" th:alt="${post.title}" width="350" height="350"></p>
-    <h1>Title: <span>[[ ${post.title} ]]</span></h1>
-    <h4>Short title: <span>[[ ${post.shorttitle} ]]</span></h4>
+    <h4>[[ ${post.shorttitle} ]]</h4>
     <h5>Author: <span>[[ ${post.author.fullname} ]]</span></h5>
     <h5>Categories:</h5>
     <ul>
@@ -10,4 +10,14 @@
         </li>
     </ul>
     <div data-th-utext="${portal.processHtml({'_value=' + post.html})}"></div>
+    <a href="/posts" class="text-light text-decoration-none">
+        <button class="btn btn-secondary btn-block">
+            Back to posts
+        </button>
+    </a>
+    <a href="/" class="text-light text-decoration-none">
+        <button class="btn btn-primary btn-block">
+            Back to homepage
+        </button>
+    </a>
 </div>

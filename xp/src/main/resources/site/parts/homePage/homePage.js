@@ -40,10 +40,7 @@ exports.get = function (req) {
     // Specify the view file to use
     var view = resolve('homePage.html');
 
-    var url = portal.pageUrl();
-
     var model = {
-        url: url,
         pages: getPostsData(),
         config: getCreatePageData()
     }

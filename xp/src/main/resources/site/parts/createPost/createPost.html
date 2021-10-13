@@ -1,5 +1,5 @@
-<div class="form">
-    <h1>Create Post</h1>
+<div class="form w-50 mx-auto">
+    <h1 class="text-center my-3 bg-light">Create Post</h1>
     <form method="post" th:action="${serviceUrl}">
         <input type="hidden" name="postsFolderPath" th:value="${config.postsFolderPath}">
         <input type="hidden" name="httpRequestType" th:value="post">
@@ -29,6 +29,11 @@
             </option>
         </select>
 
-        <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+        <button type="submit" class="btn btn-primary btn-block text-light mt-2">Enviar</button>
     </form>
+    <a href="/" class="text-light text-decoration-none">
+        <button class="btn btn-info btn-block mt-2">
+            Cancel (back to homepage)
+        </button>
+    </a>
 </div>

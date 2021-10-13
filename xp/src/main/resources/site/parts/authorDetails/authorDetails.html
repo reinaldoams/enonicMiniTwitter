@@ -1,6 +1,9 @@
-<div class="details">
+<div class="w-50 my-3 mx-auto">
+    <h1 class="text-center my-3 bg-light">[[ ${author.fullname} ]]</h1>
     <ul th:if="${show}">
-        <li style="list-style-type: none"><img th:if="${author.photo}" th:src="${author.photo}" th:alt="${author.fullname}" width="200" height="200"></li>
+        <div class="text-center">
+            <li style="list-style-type: none"><img th:if="${author.photo}" th:src="${author.photo}" th:alt="${author.fullname}" width="200" height="200"></li>
+        </div>
         <li>Name: <span>[[ ${author.fullname} ]]</span></li>
         <li>Description: <span>[[ ${author.description} ]]</span></li>
         <li>Email: <span>[[ ${author.email} ]]</span></li>
@@ -12,4 +15,14 @@
             </ul>
         </li>
     </ul>
+    <a href="/authors" class="text-light text-decoration-none">
+        <button class="btn btn-secondary btn-block">
+            Back to authors
+        </button>
+    </a>
+    <a href="/" class="text-light text-decoration-none">
+        <button class="btn btn-primary btn-block">
+            Back to homepage
+        </button>
+    </a>
 </div>

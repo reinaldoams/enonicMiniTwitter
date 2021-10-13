@@ -1,11 +1,18 @@
-<div class="form">
-    <h1>Delete Post</h1>
+<div class="w-50 my-3 mx-auto">
+    <h1 class="text-center my-3 bg-light">Delete Post</h1>
     <form method="post" th:action="${serviceUrl}">
         <input type="hidden" name="postId" th:value="${currentPost.hits[0]._id}">
         <input type="hidden" name="requestType" th:value="delete">
 
-        <h3 th:text="'You sure that you want to delete ' + ${currentPost.hits[0].data.title} + '?'"></h3>
+        <h3
+        class="text-center w-75 mx-auto"
+        th:text="'You sure that you want to delete ' + ${currentPost.hits[0].data.title} + '?'"></h3>
 
-        <button type="submit" class="btn btn-danger btn-block">Enviar</button>
+        <button type="submit" class="btn btn-danger btn-block my-2">Yes (delete)</button>
     </form>
+    <a href="/" class="text-light text-decoration-none">
+        <button class="btn btn-info btn-block">
+            No (back to homepage)
+        </button>
+    </a>
 </div>

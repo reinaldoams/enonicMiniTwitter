@@ -1,7 +1,19 @@
-<div class="details">
+<div class="w-50 my-3 mx-auto">
+    <h1 class="text-center my-3 bg-light">[[ ${category.title} ]]</h1>
     <ul th:if="${show}">
-        <li><img th:if="${category.photo}" th:src="${category.photo}" th:alt="${category.title}" width="200" height="200"></li>
+        <div class="text-center"><img th:if="${category.photo}" th:src="${category.photo}" th:alt="${category.title}" width="200" height="200"></div>
+        <li>Name: <span>[[ ${category.title} ]]</span></li>
         <li>Title: <span>[[ ${category.title} ]]</span></li>
         <li>Description: <span>[[ ${category.description} ]]</span></li>
     </ul>
+    <a href="/categories" class="text-light text-decoration-none">
+        <button class="btn btn-secondary btn-block">
+            Back to categories
+        </button>
+    </a>
+    <a href="/" class="text-light text-decoration-none">
+        <button class="btn btn-primary btn-block">
+            Back to homepage
+        </button>
+    </a>
 </div>

@@ -1,17 +1,15 @@
-<div class="form">
-    <h1>Update Post</h1>
+<div class="form w-50 mx-auto">
+    <h1 class="text-center my-3 bg-light">Update Post</h1>
     <form method="post" th:action="${serviceUrl}">
         <input type="hidden" name="postsFolderPath" th:value="${config.postsFolderPath}">
         <input type="hidden" name="requestType" th:value="put">
         <input type="hidden" name="postId" th:value="${currentPost.hits[0]._id}">
 
-        <p th:text="${currentPost}"></p>
-        <p th:text="${currentPost.hits[0].data.category}"></p>
+        <!-- <p th:text="${currentPost}"></p>
+        <p th:text="${currentPost.hits[0].data.category}"></p> -->
 
         <label>Title</label>
         <input type="text" name="title" class="form-control" th:value="${currentPost.hits[0].data.title}" required>
-
-        <p th:text $="{currentPost}"></p>
 
         <label>Short title</label>
         <input type="text" name="shorttitle" class="form-control" th:value="${currentPost.hits[0].data.shorttitle}" required>
@@ -53,6 +51,11 @@
             </option>
         </select>
 
-        <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+        <button type="submit" class="btn btn-primary btn-block text-light mt-2">Enviar</button>
     </form>
+    <a href="/" class="text-light text-decoration-none">
+        <button class="btn btn-info btn-block mt-2">
+            Cancel (back to homepage)
+        </button>
+    </a>
 </div>

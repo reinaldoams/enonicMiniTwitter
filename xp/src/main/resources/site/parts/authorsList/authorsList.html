@@ -1,8 +1,18 @@
-<div class="authors-list">
-    <h2>Authors of website:</h2>
-    <ul>
-        <li th:each="author : ${authors}">
-            <h4> <a data-th-href="${author.href}"> [[ ${author.data.fullname} ]] </a> ([[ ${author.data.email} ]])</h4>
+<div class="w-50 my-3 mx-auto">
+    <h1 class="bg-light text-center">Authors of website:</h1>
+    <ul class="text-center list-group">
+        <li th:each="author : ${authors}" class="text-decoration-none list-group-item">
+            <div>
+            <a 
+            class="h3"
+            th:href="${author.href}"> [[ ${author.data.fullname} ]] </a>
+        </div>
+            ([[ ${author.data.email} ]])
         </li>
     </ul>
+    <a href="/" class="text-light text-decoration-none">
+        <button class="btn btn-primary btn-block">
+            Cancel (back to homepage)
+        </button>
+    </a>
 </div>

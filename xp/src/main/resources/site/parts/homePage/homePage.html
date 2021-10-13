@@ -1,16 +1,19 @@
-<div>
-    <h1>This is the homepage!</h1>
-    <ul>
+<div class="w-50 my-3 mx-auto">
+    <h1 class="bg-light text-center">This is the homepage!</h1>
+    <ul class="text-center list-group">
         <div th:if='${pages}'>
-            <ul>
-                <li th:each='page : ${pages}' th:unless='${pageStat.count > 3}'>
-                    <a th:href='${url + "/" + page._name}'
-                    th:text='${page.displayName}'>hi</a>
-                </li>
-            </ul>
-        </div>
-        <div>
-            <ul><li><a th:href="${config.pageCreate}"><strong>Create a post!</strong></a></li></ul>
+                <a
+                class="text-decoration-none list-group-item"
+                th:href='${"/" + page._name}'
+                th:text='${page.displayName}'
+                th:each='page : ${pages}'
+                th:unless='${page.displayName == "Form"} or ${page.displayName == "Templates"}'>
+                </a>
+                <a class="text-decoration-none" th:href="${config.pageCreate}">
+                    <li class="list-group-item bg-warning">
+                        <strong>Create a post!</strong>
+                    </li>
+                </a>
         </div>
     </ul>
 </div>
