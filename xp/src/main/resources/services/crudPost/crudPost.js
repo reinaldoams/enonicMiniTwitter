@@ -26,7 +26,6 @@ exports.post = req => {
         content.delete({
             key: data.postId
         });
-        log.info(JSON.stringify(siteUrl, null, 4));
         
     } else if (data.requestType === 'put') {
         log.info('modificando')

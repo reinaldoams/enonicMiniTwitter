@@ -27,9 +27,6 @@ exports.get = function (req) {
     const categories = getCategories();
     const authors = getAuthors();
 
-    log.info(JSON.stringify(categories), null, 4)
-    log.info(JSON.stringify(authors), null, 4)
-
     var view = resolve('createPost.html');
 
     var model = {

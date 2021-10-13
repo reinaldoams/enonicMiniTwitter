@@ -5,7 +5,6 @@ var content = require('/lib/xp/content')
 // Handle the GET request
 exports.get = function (req) {
     const component = portal.getComponent() || {};
-    log.info(JSON.stringify(component), null, 4);
     const config = component.config || {};
 
     // Get the country content as a JSON object

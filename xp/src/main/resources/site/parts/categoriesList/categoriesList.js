@@ -19,8 +19,6 @@ exports.get = function(req) {
             categoriesData.hits[i].href = portal.pageUrl({id: categoriesData.hits[i]._id});
         }
 
-        // log.info(JSON.stringify(categoriesData, null, 4))
-
 
         return categoriesData.hits;
     }

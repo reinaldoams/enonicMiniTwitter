@@ -27,7 +27,6 @@ exports.get = function(req) {
     }
 
     const author = getAuthorData();
-    log.info(JSON.stringify(author), null, 4)
     var model = {
         author,
         show: Object.keys(author).length > 0
