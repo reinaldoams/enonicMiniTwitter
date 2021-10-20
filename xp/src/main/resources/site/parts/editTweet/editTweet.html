@@ -1,0 +1,29 @@
+<div class="form w-50 mx-auto">
+    <h1 class="text-center my-3 bg-light">Edit Tweet</h1>
+    <form method="post" th:action="${serviceUrl}">
+        <input type="hidden" name="tweetsFolderPath" th:value="${config.tweetsFolderPath}">
+        <input type="hidden" name="requestType" th:value="put">
+        <input type="hidden" name="tweetId" th:value="${currentTweet.hits[0]._id}">
+
+        <!-- <p th:text="${currentTweet}"></p>
+        <p th:text="${currentTweet.hits[0].data.category}"></p> -->
+        <label>tweetBody</label>
+        <textarea name="tweetBody" class="form-control">
+            [[ ${currentTweet.hits[0].data.tweetBody} ]]
+        </textarea>
+
+        <label>User</label>
+        <select name="user" class="form-control">
+            <option th:each="user : ${data.users}" th:value="${user.id}">
+                [[ ${user.name} ]]
+            </option>
+        </select>
+
+        <button type="submit" class="btn btn-primary btn-block text-light mt-2">Save</button>
+    </form>
+    <a href="/" class="text-light text-decoration-none">
+        <button class="btn btn-info btn-block mt-2">
+            Cancel (back to homepage)
+        </button>
+    </a>
+</div>

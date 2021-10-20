@@ -1,0 +1,16 @@
+<div class="w-50 my-3 mx-auto text-center">
+    <ul class="list-group">
+        <li class="list-group-item" th:each="tweet : ${tweets}">
+            <h4 class="my-0"> <a data-th-href="${tweet.href}"> [[ ${tweet.data.title} ]] </a></h4>
+            <h4 class="my-2">@[[ ${tweet.user.fullname} ]]</h4>
+            <p class="my-2 border border-dark"> [[ ${tweet.data.tweetBody} ]]</p>
+            <a th:href="${config.pageUpdate} + '?id=' + ${tweet._id}"><button class="btn btn-info">Edit</button></a>
+            <a th:href="${config.pageDelete} + '?id=' + ${tweet._id}"><button class="btn btn-info">Delete</button></a>
+        </li>
+    </ul>
+    <!-- <a href="/" class="text-light text-decoration-none">
+        <button class="btn btn-primary btn-block">
+            Homepage
+        </button>
+    </a> -->
+</div>

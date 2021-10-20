@@ -1,5 +1,4 @@
 <div class="w-50 my-3 mx-auto">
-    <h1 class="bg-light text-center">Home</h1>
     <ul class="text-center list-group">
         <div th:if='${pages}'>
                 <a
@@ -7,11 +6,11 @@
                 th:href='${"/" + page._name}'
                 th:text='${page.displayName}'
                 th:each='page : ${pages}'
-                th:unless='${page.displayName == "Form"} or ${page.displayName == "Templates"}'>
+                th:if='${page.displayName == "Users"}'>
                 </a>
-                <a class="text-decoration-none" th:href="${config.pageCreate}">
+                <a class="text-decoration-none" th:href="${config.userCreate}">
                     <li class="list-group-item bg-warning">
-                        <strong>Create a post!</strong>
+                        <strong>Create Account!</strong>
                     </li>
                 </a>
         </div>

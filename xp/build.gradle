@@ -21,6 +21,7 @@ dependencies {
     include 'com.enonic.lib:lib-util:3.0.0'
     include 'com.enonic.lib:lib-menu:4.0.1'
     include "com.enonic.xp:lib-node:${xpVersion}"
+    include "com.enonic.xp:lib-common:${xpVersion}"
     webjar "org.webjars:bootstrap:4.6.0"
 }
 

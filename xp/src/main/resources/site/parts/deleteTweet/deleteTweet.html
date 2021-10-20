@@ -1,0 +1,20 @@
+<div class="w-50 my-3 mx-auto">
+    <h1 class="text-center my-3 bg-light">Delete Tweet</h1>
+    <form method="post" th:action="${serviceUrl}">
+        <input type="hidden" name="tweetId" th:value="${currentTweet.hits[0]._id}">
+        <input type="hidden" name="requestType" th:value="delete">
+
+        
+        <h3>Are you sure that you want to delete the tweet below?</h3>
+        <p
+        class="text-center w-75 mx-auto border border-dark"
+        th:text="${currentTweet.hits[0].data.tweetBody}"></p>
+
+        <button type="submit" class="btn btn-danger btn-block my-2">Yes (delete)</button>
+    </form>
+    <a href="/" class="text-light text-decoration-none">
+        <button class="btn btn-info btn-block">
+            No (back to homepage)
+        </button>
+    </a>
+</div>

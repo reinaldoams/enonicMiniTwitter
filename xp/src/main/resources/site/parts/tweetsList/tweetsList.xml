@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<part>
+    <display-name>Tweets List</display-name>
+    <form>
+        <input name="tweetsFolder" type="ContentSelector">
+            <label>Tweets folder</label>
+            <help-text>Please select the folder where the tweets are located.</help-text>
+            <occurrences minimum="1" maximum="1"/>
+            <config>
+                <allowContentType>base:folder</allowContentType>
+                <allowPath>${site}</allowPath>
+                <treeMode>true</treeMode>
+                <hideToggleIcon>true</hideToggleIcon>
+            </config>
+        </input>
+
+        <input name="tweetCreateFolder" type="ContentSelector">
+            <label>Tweet create</label>
+            <help-text>Please select the folder where the tweets are going to be created.</help-text>
+            <occurrences minimum="1" maximum="1"/>
+            <config>
+                <allowContentType>base:folder</allowContentType>
+                <allowPath>${site}</allowPath>
+                <treeMode>true</treeMode>
+                <hideToggleIcon>true</hideToggleIcon>
+            </config>
+        </input>
+
+        <input name="tweetDeletePage" type="ContentSelector">
+            <label>Tweet delete</label>
+            <help-text>Please select the folder where the tweets is going to be deleted</help-text>
+            <occurrences minimum="1" maximum="1"/>
+            <config>
+                <allowContentType>base:folder</allowContentType>
+                <allowPath>${site}</allowPath>
+                <treeMode>true</treeMode>
+                <hideToggleIcon>true</hideToggleIcon>
+            </config>
+        </input>
+
+        <input name="tweetUpdatePage" type="ContentSelector">
+            <label>Tweet update</label>
+            <help-text>Please select the folder where the tweet is going to be updated.</help-text>
+            <occurrences minimum="1" maximum="1"/>
+            <config>
+                <allowContentType>base:folder</allowContentType>
+                <allowPath>${site}</allowPath>
+                <treeMode>true</treeMode>
+                <hideToggleIcon>true</hideToggleIcon>
+            </config>
+        </input>
+
+    </form>
+</part>
