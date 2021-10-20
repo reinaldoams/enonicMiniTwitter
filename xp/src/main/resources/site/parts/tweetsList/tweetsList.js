@@ -19,7 +19,6 @@ exports.get = function (req) {
                 start: 0,
                 count: -1,
             }).hits.map(tweet => {
-                log.info(JSON.stringify(tweet, null, 4))
                 tweet.user = content.get({key: tweet.data.user}).data;
                 tweet.href = portal.pageUrl({id: tweet._id});
                 return tweet;

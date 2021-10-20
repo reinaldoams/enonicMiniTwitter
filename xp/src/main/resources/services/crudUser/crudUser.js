@@ -5,6 +5,13 @@ var context = require('/lib/xp/context');
 var node = require('/lib/xp/node');
 var common = require('/lib/xp/common');
 
+const forceArray = function (data){
+    if (!Array.isArray(data)) {
+        data = [data];
+    }
+    return data;
+}
+
 exports.post = req => {
     let siteUrl = portal.url(portal.getSite()._id);
     log.info(JSON.stringify(req.params))
@@ -27,10 +34,10 @@ exports.post = req => {
         
     } else {
         log.info(JSON.stringify(data, null, 4))
+
         content.create({
-            name: common.sanitize(data.username),
+            name: data.username,
             parentPath: `${data['usersFolderPath']}`,
-            displayName: data.username,
             contentType: `${app.name}:user`,
             data: {
                 fullname: data.username,
