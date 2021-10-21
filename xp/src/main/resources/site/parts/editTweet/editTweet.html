@@ -4,9 +4,8 @@
         <input type="hidden" name="tweetsFolderPath" th:value="${config.tweetsFolderPath}">
         <input type="hidden" name="requestType" th:value="put">
         <input type="hidden" name="tweetId" th:value="${currentTweet.hits[0]._id}">
+        
 
-        <!-- <p th:text="${currentTweet}"></p>
-        <p th:text="${currentTweet.hits[0].data.category}"></p> -->
         <label>tweetBody</label>
         <textarea name="tweetBody" class="form-control">
             [[ ${currentTweet.hits[0].data.tweetBody} ]]

@@ -21,16 +21,20 @@ exports.get = req => {
 
 exports.post = req => {
     let siteUrl = portal.url(portal.getSite()._id);
-    log.info(JSON.stringify(req.params))
     const data = req.params;
     if (data.requestType === 'delete') {
         content.delete({
             key: data.tweetId
         });
-        
+        context.run({
+            branch: 'draft'
+        }, function() {content.delete({
+            key: data.tweetId
+        })});
     } else if (data.requestType === 'put') {
         function editor(c) {
             c.data.user = data.user;
+            c.displayName = common.sanitize(data.tweetBody);
             c.data.tweetBody = data.tweetBody;
             return c;
         }
@@ -38,20 +42,39 @@ exports.post = req => {
             key: data.tweetId,
             editor: editor
         });
-        
+        context.run({
+            branch: 'draft'
+        }, function () {
+            content.modify({
+                key: data.tweetId,
+                editor: editor
+            });
+        })
     } else {
-        log.info(JSON.stringify(data, null, 4));
-        content.create({
-            name: common.sanitize(data.tweetBody),
-            parentPath: `${data['tweetsFolderPath']}`,
-            displayName: data.tweetBody,
-            contentType: `${app.name}:tweet`,
-            data: {
-                tweetBody: data.tweetBody,
-                user: data.user,
-            }
-        })};
-        
+        let tweetData = {};
+        let createNewContent = () => {
+            let newContent = content.create({
+                name: common.sanitize(data.tweetBody),
+                parentPath: `${data['tweetsFolderPath']}`,
+                displayName: common.sanitize(data.tweetBody),
+                contentType: `${app.name}:tweet`,
+                data: {
+                    tweetBody: data.tweetBody,
+                    user: data.user,
+                }
+            })
+            tweetData = newContent;
+        };
+        const result = context.run({
+            branch: 'draft'
+        }, createNewContent);
+        content.publish({
+            keys: [tweetData._id],
+            sourceBranch: 'draft',
+            targetBranch: 'master'
+        });
+    }
+
     return {
         redirect: '/'
     }

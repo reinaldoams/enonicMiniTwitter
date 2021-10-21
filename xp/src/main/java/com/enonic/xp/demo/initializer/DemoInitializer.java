@@ -83,7 +83,7 @@ public class DemoInitializer
     private void doInitialize()
         throws Exception
     {
-        final ContentPath demoSitePath = ContentPath.from( "/bootstrap-starter" );
+        final ContentPath demoSitePath = ContentPath.from( "/minitwitter" );
         if ( hasContent( demoSitePath ) )
         {
             return;
