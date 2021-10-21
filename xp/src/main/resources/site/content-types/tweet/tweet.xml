@@ -13,7 +13,7 @@
 			<label>Select User</label>
 			<occurrences minimum="1" maximum="1" />
 			<config>
-				<allowPath>/bootstrap-starter/users/</allowPath>
+				<allowPath>/minitwitter/users/</allowPath>
 				<allowContentType>user</allowContentType>
 			</config>
 		</input>

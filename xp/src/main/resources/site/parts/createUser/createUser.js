@@ -13,7 +13,7 @@ exports.get = function (req) {
     var model = {
         
         config: {
-            usersFolderPath: '/bootstrap-starter/users'
+            usersFolderPath: '/minitwitter/users'
         },
         serviceUrl: portal.serviceUrl({service: 'crudUser'})
     }

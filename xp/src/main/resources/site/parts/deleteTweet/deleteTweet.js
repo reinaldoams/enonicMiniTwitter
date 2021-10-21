@@ -13,14 +13,13 @@ exports.get = function (req) {
         }
     });
 
-    log.info(JSON.stringify(req.params, null, 4))
 
     var view = resolve('deleteTweet.html');
 
     var model = {
         currentTweet: currentTweet,
         config: {
-            postsFolderPath: '/bootstrap-starter/tweets'
+            postsFolderPath: '/minitwitter/tweets'
         },
         serviceUrl: portal.serviceUrl({service: 'crudPost'})
     };

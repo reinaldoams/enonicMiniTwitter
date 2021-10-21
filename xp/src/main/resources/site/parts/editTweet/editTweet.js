@@ -35,7 +35,7 @@ exports.get = function (req) {
         },
         currentTweet: currentTweet,
         config: {
-            tweetsFolderPath: '/bootstrap-starter/tweets'
+            tweetsFolderPath: '/minitwitter/tweets'
         },
         serviceUrl: portal.serviceUrl({service: 'crudPost'})
     };
