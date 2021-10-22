@@ -33,10 +33,6 @@ function tudoAqui(req) {
         content.delete({
             key: data.user
         });
-
-        content.delete({
-            key: data.user
-        })
 } else if (data.requestType === 'put') {
     function editor(c) {
         c.data.user = data.user;
