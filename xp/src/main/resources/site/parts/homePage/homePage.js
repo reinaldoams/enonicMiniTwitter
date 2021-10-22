@@ -26,13 +26,14 @@ exports.get = function (req) {
         return postsData;
     }
     
-
     const getCreatePageData = () => {
-        const pageCreate = config['postCreatePage'] || '';
+        const userCreate = config['userCreate'] || '';
+        const userDelete = config['userDelete'] || '';
 
 
         return {
-            pageCreate: portal.pageUrl({ id: pageCreate }),
+            userCreate: portal.pageUrl({ id: userCreate }),
+            userDelete: portal.pageUrl({ id: userDelete })
         }
 
     }

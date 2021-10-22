@@ -14,32 +14,22 @@ const getUsers = function () {
 }
 
 exports.get = function (req) {
-    let params = req.params;
-    let currentTweet = content.query({
-        query: '',
-        filters: {
-            ids: {
-                values: [params.id]
-            }
-        }
-    });
-
+    var currentContent = portal.getContent();
     const users = getUsers();
 
-    var view = resolve('editTweet.html');
+    var view = resolve('deleteUser.html');
 
     var model = {
         data: {
             users
         },
-        currentTweet: currentTweet,
         config: {
             tweetsFolderPath: '/minitwitter/tweets'
         },
-        serviceUrl: portal.serviceUrl({service: 'crudPost'})
-    };
+        serviceUrl: portal.serviceUrl({service: 'crudUser'})
+    }
 
     return {
         body: thymeleaf.render(view, model)
-    };
+    }
 }

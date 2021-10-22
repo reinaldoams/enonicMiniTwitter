@@ -65,7 +65,7 @@ exports.post = req => {
             })
             tweetData = newContent;
         };
-        const result = context.run({
+        context.run({
             branch: 'draft'
         }, createNewContent);
         content.publish({

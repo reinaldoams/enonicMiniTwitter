@@ -2,20 +2,21 @@
 <part>
     <display-name>Home Page</display-name>
     <form>
-        <input name="pagesSite" type="ContentSelector">
-            <label>Pages site</label>
-            <help-text>Please select the site where the pages are located.</help-text>
+
+        <input name="userCreate" type="ContentSelector">
+            <label>User create</label>
+            <help-text>Please select the folder where the users are going to be created.</help-text>
             <occurrences minimum="1" maximum="1"/>
             <config>
+                <allowContentType>base:folder</allowContentType>
                 <allowPath>${site}</allowPath>
                 <treeMode>true</treeMode>
                 <hideToggleIcon>true</hideToggleIcon>
             </config>
         </input>
-
-        <input name="postCreatePage" type="ContentSelector">
-            <label>Post create</label>
-            <help-text>Please select the folder where the posts are going to be created.</help-text>
+        <input name="userDelete" type="ContentSelector">
+            <label>User delete</label>
+            <help-text>Please select the folder where the users are going to be deleted.</help-text>
             <occurrences minimum="1" maximum="1"/>
             <config>
                 <allowContentType>base:folder</allowContentType>

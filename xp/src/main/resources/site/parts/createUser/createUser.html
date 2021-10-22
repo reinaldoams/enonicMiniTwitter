@@ -1,29 +1,33 @@
 <div class="form w-50 mx-auto">
     <h1 class="text-center my-3 bg-light">Create new user</h1>
-    <form method="post" th:action="${serviceUrl}">
+    <form th:action="${serviceUrl}" id="createUserForm" method="post" enctype="multipart/form-data">
         <input type="hidden" name="usersFolderPath" th:value="${config.usersFolderPath}">
         <input type="hidden" name="httpRequestType" th:value="post">
 
         <label>Username</label>
         <div class="form-group">
-            <textarea id="tweetBody" class="form-control" name="username" placeholder="New user username"></textarea>
+            <textarea id="username" class="form-control" name="username" placeholder="New user username"></textarea>
         </div>
 
         <label>Photo</label>
         <div class="form-group">
-            <input type="file" name="photo">
+            <input id="photo" type="file" name="photo">
         </div>
 
         <label>E-mail</label>
         <div class="form-group">
-            <textarea id="tweetBody" class="form-control" name="email" placeholder="New user e-mail"></textarea>
+            <textarea id="email" class="form-control" name="email" placeholder="New user e-mail"></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-block text-light mt-2">Create user</button>
+        <button type="submit" id="createUserBtn" class="btn btn-primary btn-block text-light mt-2">Create user</button>
     </form>
-    <!-- <a href="/" class="text-light text-decoration-none">
+    <a href="/" class="text-light text-decoration-none">
         <button class="btn btn-info btn-block mt-2">
             Cancel (back to homepage)
         </button>
-    </a> -->
+    </a>
 </div>
+
+<script th:inline="javascript">
+    const passadorDeUrl = [[ ${serviceUrl} ]]
+</script>

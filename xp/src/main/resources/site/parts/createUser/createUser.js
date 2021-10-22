@@ -4,21 +4,19 @@ var content = require('/lib/xp/content');
 
 
 
-
 exports.get = function (req) {
     var currentContent = portal.getContent();
 
     var view = resolve('createUser.html');
-
+    log.info('aqui')
     var model = {
-        
         config: {
             usersFolderPath: '/minitwitter/users'
         },
-        serviceUrl: portal.serviceUrl({service: 'crudUser'})
+        serviceUrl: portal.serviceUrl({service: 'crudUser', type: 'absolute'})
     }
 
     return {
-        body: thymeleaf.render(view, model)
+        body: thymeleaf.render(view, model),
     }
 }

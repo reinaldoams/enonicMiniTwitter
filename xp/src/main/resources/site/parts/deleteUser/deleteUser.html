@@ -1,0 +1,21 @@
+<div class="form w-50 mx-auto">
+    <h1 class="text-center my-3 bg-light">Delete user</h1>
+    <form method="post" th:action="${serviceUrl}" id="createUserForm">
+        <input type="hidden" name="usersFolderPath" th:value="${config.usersFolderPath}">
+        <input type="hidden" name="requestType" th:value="delete">
+
+        <label>User</label>
+        <select name="user" class="form-control">
+            <option th:each="user : ${data.users}" th:value="${user.id}">
+                [[ ${user.name} ]]
+            </option>
+        </select>
+
+        <button type="submit" class="btn btn-danger btn-block my-2">Delete user</button>
+    </form>
+    <a href="/" class="text-light text-decoration-none">
+        <button class="btn btn-info btn-block mt-2">
+            Cancel (back to homepage)
+        </button>
+    </a>
+</div>
