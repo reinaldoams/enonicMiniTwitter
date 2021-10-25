@@ -32,8 +32,7 @@ function tudoAqui(req) {
     let siteUrl = portal.url(portal.getSite()._id);
     const data = req.params;
     if (data.requestType === 'delete') {
-        const teste = content.getAttachments(data.user).photo
-        log.info(JSON.stringify(teste, null, 4))
+        const photoToDelete = content.get({key: data.user}).data.photo;
         context.run({
             branch: 'master',
             principals: ["role:system.admin"],
@@ -41,10 +40,16 @@ function tudoAqui(req) {
             content.delete({
                 key: data.user
             })
+            content.delete({
+                key: photoToDelete
+            })
         });
         content.delete({
             key: data.user
         });
+        content.delete({
+            key: photoToDelete
+        })
     } else if (data.requestType === 'put') {
         function editor(c) {
             c.data.user = data.user;
@@ -58,7 +63,6 @@ function tudoAqui(req) {
 
     } else {
         var result = portal.getMultipartForm();
-        log.info(JSON.stringify(result, null, 4));
         var photoStream = portal.getMultipartStream('photo');
         let userData = {};
 
