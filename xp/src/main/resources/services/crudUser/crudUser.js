@@ -30,9 +30,16 @@ function tudoAqui(req) {
     let siteUrl = portal.url(portal.getSite()._id);
     const data = req.params;
     if (data.requestType === 'delete') {
-        content.delete({
+        context.run({
+            branch: 'draft'
+        }, function() {content.delete({
             key: data.user
-        });
+        })});
+        context.run({
+            branch: 'master'
+        }, function() {content.delete({
+            key: data.user
+        })});
 } else if (data.requestType === 'put') {
     function editor(c) {
         c.data.user = data.user;

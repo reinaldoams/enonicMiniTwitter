@@ -19,7 +19,7 @@ exports.get = function (req) {
                 start: 0,
                 count: -1,
             }).hits.map(tweet => {
-                tweet.user = content.get({key: tweet.data.user}).data;
+                tweet.user = content.get({key: tweet.data.user}) ? content.get({key: tweet.data.user}).data : {};
                 tweet.href = portal.pageUrl({id: tweet._id});
                 return tweet;
             });
