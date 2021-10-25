@@ -8,7 +8,6 @@ exports.get = function (req) {
     var currentContent = portal.getContent();
 
     var view = resolve('createUser.html');
-    log.info('aqui')
     var model = {
         config: {
             usersFolderPath: '/minitwitter/users'

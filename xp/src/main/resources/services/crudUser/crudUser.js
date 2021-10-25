@@ -14,6 +14,7 @@ const forceArray = function (data) {
 function runInsideContext(branch, callback) {
     return context.run({
         repository: 'com.enonic.cms.default',
+        principals: ["role:system.admin"],
         branch,
         user: {
             login: 'su',
@@ -26,93 +27,93 @@ function runInsideContext(branch, callback) {
 }
 
 exports.post = function (req) { return runInsideContext('draft', () => tudoAqui(req)); }
+
 function tudoAqui(req) {
     let siteUrl = portal.url(portal.getSite()._id);
     const data = req.params;
     if (data.requestType === 'delete') {
+        const teste = content.getAttachments(data.user).photo
+        log.info(JSON.stringify(teste, null, 4))
         context.run({
-            branch: 'draft'
-        }, function() {content.delete({
+            branch: 'master',
+            principals: ["role:system.admin"],
+        }, function () {
+            content.delete({
+                key: data.user
+            })
+        });
+        content.delete({
             key: data.user
-        })});
-        context.run({
-            branch: 'master'
-        }, function() {content.delete({
-            key: data.user
-        })});
-} else if (data.requestType === 'put') {
-    function editor(c) {
-        c.data.user = data.user;
-        c.data.tweetBody = data.tweetBody;
-        return c;
-    }
-    var result = content.modify({
-        key: data.tweetId,
-        editor: editor
-    });
-
-} else {
-    // const formData = new FormData();
-    // formData.append('createUserForm', createUserForm.files[0])
-
-
-    var result = portal.getMultipartForm();
-    log.info(JSON.stringify(result, null, 4));
-    var photoStream = portal.getMultipartStream('photo');
-    let userData = {};
-
-    var photoCreated = content.createMedia({
-        name: result.photo.fileName,
-        parentPath: '/minitwitter/images',
-        mimeType: result.photo.contentType,
-        data: photoStream
-    });
-
-
-    // let createNewUser = () => {
-    let newUser = content.create({
-        name: data.username,
-        displayName: data.username,
-        parentPath: `${data['usersFolderPath']}`,
-        contentType: `${app.name}:user`,
-        data: {
-            fullname: data.username,
-            email: data.email,
-            photo: photoCreated._id
+        });
+    } else if (data.requestType === 'put') {
+        function editor(c) {
+            c.data.user = data.user;
+            c.data.tweetBody = data.tweetBody;
+            return c;
         }
-    })
-    userData = newUser;
-    // };
+        var result = content.modify({
+            key: data.tweetId,
+            editor: editor
+        });
 
-    // const multiPart = fetch(url, {
-    //     mode: 'no-cors',
-    //     method: method || null,
-    //     headers: {
-    //         'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
-    //         'Content-Type': 'multipart/form-data'
-    //     },
-    //     body: JSON.stringify(data) || null,
-    // })
+    } else {
+        var result = portal.getMultipartForm();
+        log.info(JSON.stringify(result, null, 4));
+        var photoStream = portal.getMultipartStream('photo');
+        let userData = {};
 
-    // const formData = new FormData();
+        var photoCreated = content.createMedia({
+            name: result.photo.fileName,
+            parentPath: '/minitwitter/images',
+            mimeType: result.photo.contentType,
+            data: photoStream
+        });
 
-    // formData.append('file', multiPart.files[0]);
+
+        // let createNewUser = () => {
+        let newUser = content.create({
+            name: data.username,
+            displayName: data.username,
+            parentPath: `${data['usersFolderPath']}`,
+            contentType: `${app.name}:user`,
+            data: {
+                fullname: data.username,
+                email: data.email,
+                photo: photoCreated._id
+            }
+        })
+        userData = newUser;
+        // };
+
+        // const multiPart = fetch(url, {
+        //     mode: 'no-cors',
+        //     method: method || null,
+        //     headers: {
+        //         'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
+        //         'Content-Type': 'multipart/form-data'
+        //     },
+        //     body: JSON.stringify(data) || null,
+        // })
+
+        // const formData = new FormData();
+
+        // formData.append('file', multiPart.files[0]);
 
 
-    content.publish({
-        keys: [userData._id],
-        sourceBranch: 'draft',
-        targetBranch: 'master'
-    });
-    // content.addAttachment({
-    //     key: [userData._id],
-    //     name: 'photo',
-    //     mimeType: 'image/png',
-    //     label: 'photo',
-    //     data: photoStream
-    // })
-};
-return {
-    redirect: '/'
-}
+        content.publish({
+            keys: [userData._id],
+            sourceBranch: 'draft',
+            targetBranch: 'master'
+        });
+        // content.addAttachment({
+        //     key: [userData._id],
+        //     name: 'photo',
+        //     mimeType: 'image/png',
+        //     label: 'photo',
+        //     data: photoStream
+        // })
+    };
+    return {
+        redirect: '/'
+    }
 };

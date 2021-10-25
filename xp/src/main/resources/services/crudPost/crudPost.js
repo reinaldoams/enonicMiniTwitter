@@ -50,6 +50,11 @@ exports.post = req => {
                 editor: editor
             });
         })
+        content.publish({
+            keys: [data.tweetId],
+            sourceBranch: 'draft',
+            targetBranch: 'master'
+        });
     } else {
         let tweetData = {};
         let createNewContent = () => {

@@ -21,6 +21,7 @@ exports.get = function (req) {
             }).hits.map(tweet => {
                 tweet.user = content.get({key: tweet.data.user}) ? content.get({key: tweet.data.user}).data : {};
                 tweet.href = portal.pageUrl({id: tweet._id});
+                tweet.user.photo = portal.attachmentUrl({id: tweet.user.photo})
                 return tweet;
             });
         }

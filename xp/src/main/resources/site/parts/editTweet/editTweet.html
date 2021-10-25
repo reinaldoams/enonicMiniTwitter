@@ -6,14 +6,18 @@
         <input type="hidden" name="tweetId" th:value="${currentTweet.hits[0]._id}">
         
 
-        <label>tweetBody</label>
-        <textarea name="tweetBody" class="form-control">
-            [[ ${currentTweet.hits[0].data.tweetBody} ]]
-        </textarea>
+        <label>Tweet Text</label>
+        <textarea name="tweetBody" class="form-control">[[ ${currentTweet.hits[0].data.tweetBody} ]]</textarea>
+        
 
         <label>User</label>
         <select name="user" class="form-control">
-            <option th:each="user : ${data.users}" th:value="${user.id}">
+            <option th:each="user : ${data.users}" th:value="${user.id}"
+            th:unless="${currentTweet.hits[0].data.user} == ${user.id}">
+                [[ ${user.name} ]]
+            </option>
+            <option th:each="user : ${data.users}" th:value="${user.id}"
+            th:if="${currentTweet.hits[0].data.user} == ${user.id}" selected>
                 [[ ${user.name} ]]
             </option>
         </select>
